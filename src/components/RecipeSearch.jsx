@@ -29,6 +29,7 @@ export default function RecipeSearch({ onSearch }) {
         setError(data.error || "Something went wrong.");
       }
     } catch (err) {
+      console.error(err); // Log the error to the console
       setError("Failed to fetch data. Please try again.");
     }
 
