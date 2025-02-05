@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TextField, Button } from "@mui/material"; 
-import { motion } from "framer-motion"; 
+import { TextField, Button } from "@mui/material";
+import { motion } from "framer-motion";
 
 export default function RecipeSearch({ onSearch }) {
   const [ingredients, setIngredients] = useState("");
@@ -14,7 +14,8 @@ export default function RecipeSearch({ onSearch }) {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/recipes/generate", {
+      // Update the URL to point to the deployed backend URL on Render
+      const response = await fetch("https://recipe-backend-fsd.onrender.com/api/recipes/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ingredients: ingredients.split(",") }),
