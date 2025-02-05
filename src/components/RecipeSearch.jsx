@@ -14,7 +14,7 @@ export default function RecipeSearch({ onSearch }) {
     setError("");
 
     try {
-      const response = await fetch("https://recipe-backend-fsd.onrender.com/api/recipes/generate", {
+      const response = await fetch("http://localhost:5000/api/recipes/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ingredients: ingredients.split(",") }),
@@ -36,7 +36,7 @@ export default function RecipeSearch({ onSearch }) {
 
   return (
     <motion.div
-      style={{ marginLeft: "-140px", marginTop: "20px" }}
+      style={{ marginLeft: "-10px", marginTop: "20px" }}
       className="flex flex-col items-center space-y-6 p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -56,7 +56,7 @@ export default function RecipeSearch({ onSearch }) {
             width: "400px",
             backgroundColor: "#FAEBD7",
             border: "2px solid #5C4033",
-            color: "black",
+            color: "#5C4033",
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
           },
         }}
@@ -75,7 +75,7 @@ export default function RecipeSearch({ onSearch }) {
             borderRadius: "8px",
             backgroundColor: "#D2691E",
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
-            color: "#5C4033",
+            color: "white",
           }}
         >
           {loading ? "Searching..." : "Search Recipes"}
