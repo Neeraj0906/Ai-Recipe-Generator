@@ -14,11 +14,10 @@ export default function RecipeSearch({ onSearch }) {
     setError("");
 
     try {
-      // Update the URL to point to the deployed backend URL on Render
-      const response = await fetch("https://recipe-backend-fsd.onrender.com/api/recipes/generate", {
+      const response = await fetch("http://localhost:5000/api/recipes/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ingredients: ingredients.split(",") }),
+        body: JSON.stringify({ ingredients: ingredients.split(",").map((i) => i.trim()) }),
       });
 
       const data = await response.json();
@@ -29,7 +28,7 @@ export default function RecipeSearch({ onSearch }) {
         setError(data.error || "Something went wrong.");
       }
     } catch (err) {
-      console.error(err); // Log the error to the console
+      console.error(err);
       setError("Failed to fetch data. Please try again.");
     }
 
@@ -64,7 +63,6 @@ export default function RecipeSearch({ onSearch }) {
         }}
         InputLabelProps={{ style: { color: "#5C4033" } }}
       />
-
       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Button
           variant="contained"
@@ -72,8 +70,6 @@ export default function RecipeSearch({ onSearch }) {
           disabled={loading}
           style={{
             padding: "10px 20px",
-            marginLeft: "600px",
-            marginTop: "-80px",
             borderRadius: "8px",
             backgroundColor: "#D2691E",
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
@@ -83,7 +79,6 @@ export default function RecipeSearch({ onSearch }) {
           {loading ? "Searching..." : "Search Recipes"}
         </Button>
       </motion.div>
-
       {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
     </motion.div>
   );
